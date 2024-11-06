@@ -25,10 +25,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+Route::middleware("auth")->prefix("/admin")->name("admin.")->group(function () {
 
+    Route::get('/projects', [ProjectController::class, "index"])->name('projects.index');
+    Route::get('/projects/create', [ProjectController::class, "show"])->name('projects.show');
+    Route::get('/projects/{id}', [ProjectController::class, "create"])->name('projects.create');
+    Route::post('/projects', [ProjectController::class, "store"])->name('projects.store');
+});
 
-Route::middleware("auth")->get('/projects', [ProjectController::class, "index"])->name('admin.projects.index');
-Route::middleware("auth")->get('/projects/create', [ProjectController::class, "show"])->name('admin.projects.show');
-Route::middleware("auth")->get('/projects/{id}', [ProjectController::class, "create"])->name('admin.projects.create');
-Route::middleware("auth")->post('/projects', [ProjectController::class, "store"])->name('admin.projects.store');
-Route::middleware("auth")->get('/users', [UserController::class, 'index'])->name('admin.users.index');
+Route::middleware("auth")->prefix("/admin")->name("admin.")->get('/users', [UserController::class, 'index'])->name('users.index');

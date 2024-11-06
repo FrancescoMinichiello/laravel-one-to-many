@@ -11,6 +11,7 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">User</th>
                             <th scope="col">title</th>
                             <th scope="col">content</th>
                         </tr>
@@ -19,6 +20,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">{{ $project->id }}</th>
+                                <td>{{ $project->user->name }}</td>
                                 <td>{{ $project->title }}</td>
                                 <td>{{ $project->content }}</td>
                             </tr>

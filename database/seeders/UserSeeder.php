@@ -16,17 +16,17 @@ class UserSeeder extends Seeder
     {
         $userDatas = [
             [
-                "name" => "francesco",
+                "name" => "Francesco",
                 "email" => "fra@gmail.com",
                 "password" => "12345678",
             ],
             [
-                "name" => "francesca",
+                "name" => "Francesca",
                 "email" => "fr@gmail.com",
                 "password" => "12345678",
             ],
             [
-                "name" => "franceschino",
+                "name" => "Franco",
                 "email" => "franchino@gmail.com",
                 "password" => "12345678",
             ],
