@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +25,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::middleware("auth")->prefix("/admin")->name("admin.")->group(function () {
 
-    Route::get('/projects', [AdminProjectController::class, "index"])->name('projects.index');
-    Route::get('/projects/create', [AdminProjectController::class, "show"])->name('projects.show');
-    Route::get('/projects/{id}', [AdminProjectController::class, "create"])->name('projects.create');
-    Route::post('/projects', [AdminProjectController::class, "store"])->name('projects.store');
-});
+
+Route::middleware("auth")->get('/projects', [ProjectController::class, "index"])->name('admin.projects.index');
+Route::middleware("auth")->get('/projects/create', [ProjectController::class, "show"])->name('admin.projects.show');
+Route::middleware("auth")->get('/projects/{id}', [ProjectController::class, "create"])->name('admin.projects.create');
+Route::middleware("auth")->post('/projects', [ProjectController::class, "store"])->name('admin.projects.store');
+Route::middleware("auth")->get('/users', [UserController::class, 'index'])->name('admin.users.index');
